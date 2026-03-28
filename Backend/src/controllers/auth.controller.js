@@ -1,7 +1,7 @@
 import userModel from "../models/user.model.js";
-import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import bcrypt from "bcryptjs";
+import { generateToken } from "../utils/generateToken.js";
 dotenv.config();
 
 export  async function registerUserController(req, res){
@@ -30,13 +30,9 @@ export  async function registerUserController(req, res){
             password: hashedPassword,
             role: role || "user" // Agar frontend se role nahi aaya, toh default 'user' banega
         });
-         const token= jwt.sign({
-    id:newUser._id,
-    role:newUser.role,
-   },process.env.JWT_SECRET,{expiresIn:"7d"});
 
-   res.cookie("token",token);
-
+        generateToken(res, newUser._id, newUser.role,newUser.username);
+         
         // 5. Send success response (Bina password return kiye)
         res.status(201).json({ 
             message: "User registered successfully!", 
@@ -78,18 +74,8 @@ export async function loginUserController(req, res) {
             return res.status(400).json({ message: "Invalid email or password." });
         }
 
-        // 4. Generate JWT Token (Same as Registration)
-        const token = jwt.sign({
-            id: user._id,
-            role: user.role,
-        }, process.env.JWT_SECRET, { expiresIn: "7d" });
-
-        // 5. Set Cookie (Extra security options ke saath)
-        res.cookie("token", token, {
-            httpOnly: true, // XSS attacks se bachne ke liye (Frontend JS isko read nahi kar payega)
-            secure: process.env.NODE_ENV === "production", // Production mein sirf HTTPS par kaam karega
-            maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days in milliseconds
-        });
+      
+        generateToken(res, user._id, user.role,user.username);
 
         // 6. Send success response (Bina password return kiye)
         res.status(200).json({
