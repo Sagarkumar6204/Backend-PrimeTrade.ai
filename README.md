@@ -109,7 +109,7 @@ npm run dev
 
 **Sagar Kumar**
 * **Email:** [sagarkumar6204@gmail.com](mailto:sagarkumar6204@gmail.com)
-* **LinkedIn:** [linkedin.com/in/your-profile]([https://linkedin.com/in/your-profile](https://www.linkedin.com/in/contactsagar-kumar/))
+* **LinkedIn:** [linkedin.com/in/your-profile](https://www.linkedin.com/in/contactsagar-kumar/)
 * **GitHub:** [@Sagarkumar6204](https://github.com/Sagarkumar6204)
 
 ---
