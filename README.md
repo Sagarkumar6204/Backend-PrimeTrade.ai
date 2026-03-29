@@ -105,6 +105,14 @@ npm install
 npm run dev
 ```
 
-<div align="center">
-<b>Developed by <a href="https://github.com/Sagarkumar6204" target="_blank">Sagar Kumar</a></b>
-</div>
+## 📬 Contact
+
+**Sagar Kumar**
+* **Email:** [sagarkumar6204@gmail.com](mailto:sagarkumar6204@gmail.com)
+* **LinkedIn:** [linkedin.com/in/your-profile]([https://linkedin.com/in/your-profile](https://www.linkedin.com/in/contactsagar-kumar/))
+* **GitHub:** [@Sagarkumar6204](https://github.com/Sagarkumar6204)
+
+---
+<p align="center">
+  Show some ❤️ by starring this repository!
+</p>
