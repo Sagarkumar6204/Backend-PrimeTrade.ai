@@ -79,20 +79,21 @@ npm install
  
 # Create a .env file in the root of the backend folder and include your variables:
 
-*Code snippet*
 
 
+```bash
 MONGO_URI=your_mongodb_connection_string
 JWT_SECRET=your_jwt_secret_key
 PORT=3000
-
+```
 *Start the development server:*
 
 ```Bash
 npm run dev
+```
 2. Frontend Initialization
 Navigate to the frontend directory and install dependencies:
-```
+
 
 ```Bash
 cd frontend
