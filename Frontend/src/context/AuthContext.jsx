@@ -7,7 +7,7 @@ export const AuthDataContext=createContext()
 function AuthContext({children}) {
   let[loading,setLoading]=useState(false);
 
-    let serverUrl="http://localhost:3000";
+    let serverUrl="https://backend-primetrade-ai.onrender.com";
    let value={
         serverUrl,
         loading,setLoading
