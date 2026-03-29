@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { userDataContext } from '../context/UserContext';
-import { toast } from 'react-toastify';
 
-// 🌟 NAYA: editTaskService ko import kiya
+import toast from 'react-hot-toast'
+
 import { logoutUser } from '../services/authService';
 import { getMyTasks, createTask, deleteTask, updateTaskStatus, editTaskService } from '../services/taskService';
 
@@ -17,7 +17,7 @@ const Home = () => {
   const [newTask, setNewTask] = useState({ title: '', description: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   
-  // 🌟 NAYA STATE: Edit mode track karne ke liye
+  
   const [editingTaskId, setEditingTaskId] = useState(null);
 
   const fetchTasks = async () => {
@@ -36,7 +36,7 @@ const Home = () => {
     fetchTasks();
   }, []);
 
-  // 🌟 UPDATE: Ye function ab Create aur Edit dono handle karega
+ 
   const handleCreateTask = async (e) => {
     e.preventDefault();
     if (!newTask.title.trim()) {
@@ -48,12 +48,12 @@ const Home = () => {
       setIsSubmitting(true);
       
       if (editingTaskId) {
-        // Agar edit mode hai toh edit API call karo
+       
         await editTaskService(editingTaskId, newTask);
         toast.success("Task updated successfully!");
-        setEditingTaskId(null); // Edit mode band karo
+        setEditingTaskId(null); 
       } else {
-        // Normal Create task
+        
         await createTask(newTask);
         toast.success("Task created successfully!");
       }
@@ -78,7 +78,7 @@ const Home = () => {
     }
   };
 
-  // 🌟 NAYA FUNCTION: Edit button click handle karne ke liye
+  
   const handleEditClick = (task) => {
     setEditingTaskId(task._id);
     setNewTask({ title: task.title, description: task.description || '' });
@@ -103,9 +103,10 @@ const Home = () => {
   const handleLogout = async () => {
     try {
       await logoutUser(); 
-      setUserData(null);
-      toast.success("Logged out successfully");
+      setUserData(undefined);
       navigate('/');
+      toast.success("Logged out successfully");
+      
     } catch (error) {
       toast.error("Logout failed",error);
     }
@@ -153,12 +154,12 @@ const Home = () => {
                   <textarea value={newTask.description} onChange={(e) => setNewTask({ ...newTask, description: e.target.value })} placeholder="Add more details here..." rows="4" className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none transition-all resize-none"></textarea>
                 </div>
                 
-                {/* 🌟 UPDATE: Button color aur text change hoga edit mode par */}
+         
                 <button type="submit" disabled={isSubmitting} className={`w-full py-2.5 rounded-lg text-white font-medium transition-all ${isSubmitting ? "bg-blue-400 cursor-not-allowed" : editingTaskId ? "bg-yellow-500 hover:bg-yellow-600 shadow-md" : "bg-blue-600 hover:bg-blue-700 shadow-md"}`}>
                   {isSubmitting ? "Saving..." : editingTaskId ? "Update Task" : "Save Task"}
                 </button>
 
-                {/* 🌟 NAYA: Cancel Edit Button */}
+          
                 {editingTaskId && (
                   <button
                     type="button"
@@ -175,7 +176,7 @@ const Home = () => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: Task List */}
+   
           <div className="w-full lg:w-2/3">
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 min-h-[400px]">
               <div className="flex justify-between items-center mb-6">
@@ -222,9 +223,9 @@ const Home = () => {
                         </div>
                       </div>
 
-                      {/* 🌟 UPDATE: Edit aur Delete button dono ek sath */}
+                  
                       <div className="flex flex-col gap-2">
-                        {/* Edit Button */}
+                   
                         <button 
                           onClick={() => handleEditClick(task)} 
                           className="text-yellow-600 hover:text-yellow-700 bg-yellow-50 hover:bg-yellow-100 px-3 py-1.5 rounded-md text-sm font-semibold transition-colors"
@@ -232,7 +233,7 @@ const Home = () => {
                           Edit
                         </button>
                         
-                        {/* Delete Button */}
+                
                         <button 
                           onClick={() => handleDeleteTask(task._id)} 
                           className="text-red-500 hover:text-red-700 bg-red-50 hover:bg-red-100 px-3 py-1.5 rounded-md text-sm font-semibold transition-colors" 

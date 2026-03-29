@@ -3,9 +3,9 @@ import { isValidEmail } from "../utils/ValidateEmail";
 import { loginUser } from "../services/authService";
 import { Link } from "react-router-dom";
 import { userDataContext} from "../context/UserContext";
+import toast from 'react-hot-toast'
 import { useNavigate } from "react-router-dom";
 const Login = () => {
-  // Fix 1: Context se sirf serverUrl nahi, loading/setLoading bhi le sakte hain agar Context me hai
 
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState(null);
@@ -41,18 +41,19 @@ const navigate=useNavigate();
       await getCurrentUser();
       setUserData(result.user)
       setLoading(false);
+      toast.success(result.message || "Welcome Back!");
       if (result.user.role === "admin") {
         navigate("/dashboard");
       } else {
-        navigate("/home"); // Normal User Home
+        navigate("/home"); 
       }
       console.log("Login Success Data:", result); 
       
     } catch (err) {
       setLoading(false);
-      
       setError(err);
-      console.error("Login Error:", err);
+    toast.error(err || "Something went wrong");
+  
       
     }
   };

@@ -1,6 +1,6 @@
 import api from './api';
 
-// 1. Naya task create karna
+
 export const createTask = async (taskData) => {
     try {
         const response = await api.post('/tasks/create', taskData);
@@ -10,7 +10,7 @@ export const createTask = async (taskData) => {
     }
 };
 
-// 2. Apne tasks fetch karna
+
 export const getMyTasks = async () => {
     try {
         const response = await api.get('/tasks/my-tasks');
@@ -20,7 +20,6 @@ export const getMyTasks = async () => {
     }
 };
 
-// 3. Task delete karna
 export const deleteTask = async (taskId) => {
     try {
         const response = await api.delete(`/tasks/delete/${taskId}`);
@@ -30,7 +29,7 @@ export const deleteTask = async (taskId) => {
     }
 };
 
-// Task ka status update karna
+
 export const updateTaskStatus = async (taskId, newStatus) => {
     try {
         const response = await api.put(`/tasks/update/${taskId}`, { status: newStatus });
@@ -40,7 +39,7 @@ export const updateTaskStatus = async (taskId, newStatus) => {
     }
 };
 
-// Task ka text edit karna
+
 export const editTaskService = async (taskId, updatedData) => {
     try {
         const response = await api.put(`/tasks/edit/${taskId}`, updatedData);

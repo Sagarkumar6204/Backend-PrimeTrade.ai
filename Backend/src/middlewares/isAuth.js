@@ -15,7 +15,7 @@ export async function isAuthAdmin(req,res,next) {
         {
             return res.status(403).json({message:"you dont have access to this :("})
         }
-       req.user = decoded;//req.user new create hora hai jisme value decoded hai
+       req.user = decoded;
         next();
 
     } catch (error) {

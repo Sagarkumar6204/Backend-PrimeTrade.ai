@@ -1,0 +1,176 @@
+{
+  "info": {
+    "_postman_id": "84c47f3d-6739-4152-8f04-8ef6d84edfc7",
+    "name": "PrimeTrade.ai_API",
+    "description": "StartFragment\n\n**Name:** `Primetrade.ai_Backend_Task_Sagar`**Description:**\n\n> \n\nThis collection contains the official REST API documentation for the **Primetrade.ai** Task Management System. Built with a focus on high-performance trading intelligence standards, it features secure JWT authentication, Role-Based Access Control (RBAC), and scalable MongoDB schema design.\n\n \n  \n\nEndFragment",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "46480023",
+    "_collection_link": "https://go.postman.co/collection/46480023-84c47f3d-6739-4152-8f04-8ef6d84edfc7?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Register",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"username\": \"sagar_test\",\r\n  \"email\": \"sagar@test.com\",\r\n  \"password\": \"password123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/v1/auth/register",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "auth",
+            "register"
+          ]
+        },
+        "description": "StartFragment\"Registers a new user entity. This endpoint uses **BcryptJS** for secure password hashing and implements **Input Validation** via express-validator to ensure data integrity.\"EndFragment\n\nStartFragment\n\n\"Implemented **Input Validation** using `express-validator`.\n\n- **Username:** Minimum 3 characters required.\n    \n- **Email:** Must be a valid email format.\n    \n- **Password:** Minimum 6 characters required.  \n    If validation fails, the API returns a `400 Bad Request` with a detailed error message.\"\n    \n\nEndFragmen\n\nStartFragment\n\n- **Method:** `POST`\n    \n- **URL:** `http://localhost:3000/api/v1/auth/register`\n    \n- **Body (raw JSON):**\n    \n\nEndFragment"
+      },
+      "response": []
+    },
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"admin@test.com\",\r\n  \"password\": \"password123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/v1/auth/login",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "auth",
+            "login"
+          ]
+        },
+        "description": "StartFragment\"Authenticates user credentials and issues a **JWT (JSON Web Token)** stored in a secure **HTTP-only cookie**. This prevents XSS attacks and ensures stateless session management.\"EndFragment\n\nStartFragment\"Validated via `express-validator`. Ensures the email is in the correct format and the password field is not empty before hitting the database. This reduces unnecessary database queries.\"EndFragment\n\nStartFragment\n\n- **Method:** `POST`\n    \n- **URL:** `http://localhost:3000/api/v1/auth/login`\n    \n- **Body (raw JSON):**\n    \n\nEndFragment"
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Users",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Fetch All Users (Admin Only)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/admin/all-users",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "admin",
+            "all-users"
+          ]
+        },
+        "description": "StartFragment\"Administrative endpoint to retrieve all registered users. Access is restricted to accounts with the **'admin'** role using the `isAuthAdmin` middleware.\"EndFragment\n\nStartFragment\n\n- **Method:** `GET`\n    \n- **URL:** `http://localhost:3000/api/v1/admin/all-users`\n    \n\nEndFragment"
+      },
+      "response": []
+    },
+    {
+      "name": "Update Task Protocol",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"title\": \"Primetrade Strategy Update\",\r\n    \"description\": \"Optimizing backend logic for scalability.\",\r\n    \"status\": \"completed\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/v1/admin/task/:id69c7a2ae79e05dc27a0c8651",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "admin",
+            "task",
+            ":id69c7a2ae79e05dc27a0c8651"
+          ],
+          "variable": [
+            {
+              "key": "id69c7a2ae79e05dc27a0c8651",
+              "value": ""
+            }
+          ]
+        },
+        "description": "StartFragment\"Modifies task metadata or toggles lifecycle status (Pending/Completed). This allows admins to manage global tasks across the platformEndFragment  \n  \nStartFragment\n\n- **Method:** `PUT`\n    \n- **URL:** `http://localhost:3000/api/v1/admin/task/:id` _(Replace :id with a real Task ID from your DB)_\n    \n- **Body (raw JSON):**\n    \n\nEndFragment"
+      },
+      "response": []
+    },
+    {
+      "name": "Terminate User Entity",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/v1/admin/user/:id69c7a2ae79e05dc27a0c8651",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "3000",
+          "path": [
+            "api",
+            "v1",
+            "admin",
+            "user",
+            ":id69c7a2ae79e05dc27a0c8651"
+          ],
+          "variable": [
+            {
+              "key": "id69c7a2ae79e05dc27a0c8651",
+              "value": ""
+            }
+          ]
+        },
+        "description": "StartFragment\"Permanently removes a user and performs a **cascading delete** of all their associated tasks. This is a critical administrative function for system hygiene.\"EndFragment\n\nStartFragment\n\n- **Method:** `DELETE`\n    \n- **URL:** `http://localhost:3000/api/v1/admin/user/:id` _(Replace :id with a real User ID)_\n    \n\nEndFragment"
+      },
+      "response": []
+    }
+  ]
+}

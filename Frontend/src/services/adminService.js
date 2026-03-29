@@ -1,8 +1,8 @@
 import api from './api';
 
-// 🌟 Backend ke routes se EXACT match hona chahiye
+
 export const getAllUsers = async () => {
-    const response = await api.get('/admin/all-users'); // /api/admin/all-users banega ye
+    const response = await api.get('/admin/all-users'); 
     return response.data;
 };
 
@@ -18,5 +18,9 @@ export const deleteUserByAdmin = async (userId) => {
 
 export const deleteTaskByAdmin = async (taskId) => {
     const response = await api.delete(`/admin/task/${taskId}`);
+    return response.data;
+};
+export const updateTaskByAdminService = async (taskId, data) => {
+    const response = await api.put(`/admin/task/${taskId}`, data);
     return response.data;
 };

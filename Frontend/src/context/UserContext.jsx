@@ -8,21 +8,26 @@ export const userDataContext=createContext();
 
 function UserContext({children}) {
 let {serverUrl}=useContext(AuthDataContext);
-let [userData,setUserData]=useState(null);
+let [userData,setUserData]=useState(undefined);
+const [loading, setLoading] = useState(true);
 const getCurrentUser=async()=>{
     try {
-        let result=await axios.get(serverUrl+"/api/user/currentuser",{withCredentials:true})
+      setLoading(true)
+        let result=await axios.get(serverUrl+"/api/v1/user/currentuser",{withCredentials:true})
         setUserData(result.data)
     } catch (error) {
         setUserData(null);
         console.log("Error in getting current user:",error);   
+    }
+    finally{
+      setLoading(false);
     }
 }
 useEffect(()=>{
     getCurrentUser();
 },[])
 
-    let value={userData,setUserData,getCurrentUser}
+    let value={userData,setUserData,getCurrentUser,loading}
 
     
   return (

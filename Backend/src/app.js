@@ -11,14 +11,14 @@ const app=express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: 'http://localhost:5173', // Aapka Frontend URL
-    credentials: true // Cookies allow karne ke liye (Zaroori hai)
+    origin: 'http://localhost:5173', 
+    credentials: true 
 }));
 
 
-app.use("/api/auth",authRouter );
-app.use("/api/user",userRouter);
-app.use("/api/tasks",taskRouter);
-app.use("/api/admin", adminRouter);
+app.use("/api/v1/auth",authRouter );
+app.use("/api/v1/user",userRouter);
+app.use("/api/v1/tasks",taskRouter);
+app.use("/api/v1/admin", adminRouter);
 
 export default app;

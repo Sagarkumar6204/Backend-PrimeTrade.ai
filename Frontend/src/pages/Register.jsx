@@ -3,8 +3,8 @@ import { isValidEmail } from "../utils/ValidateEmail";
 import { Link } from "react-router-dom";
 import { registerUser } from "../services/authService";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 
+import toast from 'react-hot-toast'
 const Register = () => {
 
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ const Register = () => {
     username: "", 
     email: "", 
     password: "",
-    role: "user" // Default role 'user' rakha hai
+    role: "user" 
   });
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -52,14 +52,15 @@ const Register = () => {
       const result = await registerUser({ username, email, password,role });
 
       setLoading(false);
-      toast.success("Registration Successful! Please Login.");
+      toast.success(result.message);
       navigate("/login"); 
+
 
     } catch (err) {
       setLoading(false);
-      const backendMsg = err.response?.data?.message || "Registration failed.";
-      setError(backendMsg);
-      toast.error(backendMsg); 
+      toast.error(err); 
+      setError(err);
+      
     }
   };
 
