@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Register from "./pages/Register.jsx";
 import Home from "./pages/Home.jsx";
 import GetStarted from "./pages/GetStarted.jsx";
-import Dashboard from "./pages/DashBoard.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
 import { Toaster } from "react-hot-toast";
 import NotFound from "./pages/NotFound.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
